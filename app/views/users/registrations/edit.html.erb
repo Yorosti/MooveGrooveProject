@@ -1,0 +1,103 @@
+
+<div id='pageBody' class="with-header">
+    <div id="loginForm" class="col col-10 offset-1">
+      
+        <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => 'd-flex flex-column mt-3' }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+   
+    <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+      </div>
+
+      
+      <div class="field">
+        <%= f.text_field :fname, autofocus: true, autocomplete: "fname", placeholder:"First Name" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :lname, autofocus: true, autocomplete: "lname", placeholder: "Last Name" %>
+      </div>
+
+      <div class="field">
+          <%= f.text_field :sex, autofocus: true, autocomplete: "sex", placeholder: "Sex" %>
+      </div>
+
+      <div class="field">
+        <%= f.date_field :dtbirth, autofocus: true, autocomplete: "dtbirth", placeholder: "Date" %>
+      </div>
+
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <i>(leave blank if you don't want to change it)</i><br />
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "New Password" %>  
+    </div>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+
+    <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password" %>
+    </div>
+    
+    <i>(we need your current password to confirm your changes)</i><br />
+    <div class="field">
+      <%= f.password_field :current_password, autocomplete: "current-password", placeholder: 'Current Password' %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag 'Cancel', :class => 'd-none btn cta-home invert  pl-5 pr-5', :id=>'clearFormBtn',  :type => 'reset' %>
+      <%= f.submit "Update", :class => 'd-none btn cta-home invert  pl-5 pr-5' %>
+      <a id="editBtn" class="btn cta-home filled invert  pl-5 pr-5"> Edit </a>
+    </div>
+  <% end %>
+
+  <p class="mt-5"><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , :class => ('btn cta-danger')%></p>
+
+  </div>
+</div>
+
+
+<script>
+
+
+const FormDisabled = disabled  => 
+ {
+    document.querySelectorAll('.field input').forEach((elmnt)=>  {
+    elmnt.disabled = disabled
+    //disabled? elmnt.classList.add('no-placeholder') : elmnt.classList.remove('no-placeholder')
+    })
+ }
+
+
+
+
+ FormDisabled(true)
+
+  document.getElementById('editBtn').addEventListener('click', (evt) => {
+    evt.target.classList.add('d-none')
+    document.querySelectorAll('.actions input').forEach((elmnt)=> elmnt.classList.remove('d-none')) 
+
+    FormDisabled(false)
+  })
+
+  document.querySelector('#clearFormBtn').addEventListener('click', (evt)=> {
+    document.getElementById('editBtn').classList.remove('d-none')
+    document.querySelectorAll('.actions input').forEach((elmnt)=> elmnt.classList.add('d-none')) 
+    
+    FormDisabled(true)
+  })
+
+
+
+
+
+</script>

@@ -1,0 +1,255 @@
+body{
+	padding:0;
+	margin:0;
+}
+
+
+.navbar
+{
+	background:rgba(2, 2, 2, 0.95);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	height: 20vh;
+}
+
+.navbar-brand
+{
+	font-size: 1.5rem
+}
+
+#introduction
+{
+	height: 100vh;
+	background-image: url('pg1.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	color: #fff;
+}
+
+
+
+.jump{
+    animation: loading 2s ease infinite;
+   }
+
+   @keyframes loading {
+    0% { 
+      transform: translateY(-10%); 
+    }
+    50%
+    {
+        transform: translateY(-50%);  
+    }
+    100% { 
+      transform: translateY(-10%);
+    }
+   }
+
+
+.cta-home
+{  
+	color: #fff;
+    background: transparent;
+  	transition: all .4s ease-in-out;
+	background-size: 100% 300%;
+    background-image: linear-gradient(to  bottom, transparent, transparent, transparent, transparent, #fff, #fff, #fff, #fff);
+    border-radius: 0;
+	border: 1px solid #fff;
+}
+
+
+.cta-home:hover {
+    background-position: 0 100%;
+    transition: all .4s ease-in-out;
+}
+
+.cta-home.filled
+{
+	background-position: 0 100%;
+	color: #212529 !important;
+}
+.cta-home.filled:hover
+{
+	background-position: 0 0;
+	transition: all .4s ease-in-out;
+	color: #fff !important;
+}
+
+.cta-danger
+{
+	color: #9e0000;
+    background: transparent;
+  	transition: all .4s ease-in-out;
+	background-size: 100% 300%;
+    background-image: linear-gradient(to  bottom, transparent, transparent, transparent, transparent, #9e0000, #9e0000, #9e0000, #9e0000);
+    border-radius: 0;
+	border: 1px solid #9e0000;
+}
+
+.cta-danger:hover {
+    background-position: 0 100%;
+	transition: all .4s ease-in-out;
+	color: #fff;
+}
+
+.invert
+{
+	filter: invert(1);
+}
+button.invert:hover
+{
+	color:#fff !important;
+}
+
+
+::placeholder
+{color:#4d4646; }
+.no-placeholder::placeholder
+{color: transparent !important;}
+
+#panl2
+{
+	height: 80vh;
+	background-color:  rgba(2, 2, 2, 0.95);
+	color: #fff;
+}
+
+#back-watch
+{
+	background-image: url('icons8-team-dhZtNlvNE8M-unsplash.jpg');
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	transition: 0.5s all;
+	filter: blur(2px) grayscale(1);
+}
+
+#back-watch:hover
+{
+	filter: blur(0px) grayscale(0.5);
+	transition: 0.5s all;
+}
+
+
+
+footer
+{
+	height: 40vh;
+	background-color: #020202;
+	color: #fff;
+}
+footer a
+{	
+	color: #fff;
+	font-weight: 200;
+	text-decoration: underline;
+}
+#siteMap ul
+{
+	list-style: none;
+}
+
+
+.field input
+{
+	border:0;
+	background:transparent;
+	border:0;
+	border-bottom: 1px solid #020202;
+	margin-bottom:2em;
+    transition: 0.5s;
+    line-height: 2.5rem;
+}
+/*:nth-child(1)*/
+.field input
+{width: 70%;}
+
+
+.field input:focus
+{
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) ; 
+}
+
+
+#pageBody
+{
+	min-height: 90vh;
+}
+.with-header
+{margin-top: 20vh;}
+
+#loginForm
+{
+	text-align: center;
+    background: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;  
+    min-height: 50vh;
+    padding: 3vh 5vw 5vh 5vw;
+
+}
+
+
+.hasBackgroundPicture
+{
+	z-index: -1;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: top;
+}
+
+.pictureRunningTrack
+{
+    background-image: url('steven-lelham-atSaEOeE8Nk-unsplash.jpg');
+}
+
+.blur
+{
+    filter: blur(2px);
+}
+
+
+.makeItBig
+{
+font-weight: bold;
+font-size: 1.5rem;
+padding: 2px;
+
+}
+
+
+.activity
+{
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.activity_img img
+{
+	width: 100%;
+}
+
+
+.stopwatch img, img.stopwatch
+{
+	width: 20px;
+}
+
+.activity_footer a
+{
+	color:  grey;
+}
+
+#activities
+{
+	min-height: 80vh;
+}
+
+#activity-info div:nth-child(1), #activity-info div:nth-child(2) 
+{
+	border-bottom: solid 1px grey;
+}

@@ -1,0 +1,49 @@
+<div id="introduction" class="d-flex align-items-center mb-2">
+    <div class="col col-2 offset-9 text-center">
+        <h1 class="mb-5">Move and Grooove</h1>
+        <p class="jump ">Sit up | Sit Down | Repeat </p> <br>
+        <a  class="btn cta-home" href = '<%= new_user_registration_path %>'>Sign Up</a>
+        <a  class="btn cta-home filled" href = '<%= new_user_session_path %>'>Sign In</a>
+    </div>
+</div>
+
+<div class="container-fluid mb-2	">
+ <div id="panl2" class="row">
+     <div id = 'description' class="col col-6 d-flex flex-column justify-content-center align-items-center">
+         <h2>Your wake up call</h2>
+         <p class="m-5 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ullamcorper, orci quis sodales congue, lectus neque lobortis massa, nec pharetra diam nulla tristique enim. Nunc vulputate nunc eu massa convallis suscipit. In sit amet ligula eget arcu mollis lobortis. Vivamus condimentum quam at molestie porta. Suspendisse ultricies pharetra nisi at commodo. Vestibulum risus dui, gravida eget mauris vitae, cursus tristique mi. Nullam nibh lorem, venenatis ac neque sit amet, dignissim mollis enim. Mauris sit amet dolor massa. Phasellus ut lobortis nisi. </p>
+
+
+     </div>
+     <div id='back-watch' class="col col-6">
+     </div>
+ </div>
+</div>
+
+
+<script>	
+
+(function ($) {
+
+$(document).ready(function(){
+// hide .navbar first
+$(".navbar").hide();
+
+// fade in .navbar
+$(function () {
+    $(window).scroll(function () {
+
+             // set distance user needs to scroll before we start fadeIn
+        if ($(this).scrollTop() > 80) {
+            $('.navbar').fadeIn('slow');
+        } else {
+            $('.navbar').fadeOut('slow');
+        }
+    });
+});
+
+});
+
+}(jQuery));
+
+</script>

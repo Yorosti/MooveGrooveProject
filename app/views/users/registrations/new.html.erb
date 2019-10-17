@@ -1,0 +1,51 @@
+
+<div id='pageBody' class="with-header">
+  <div id="loginForm" class="col col-10 offset-1">
+    
+      
+    <h2>Sign up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'd-flex flex-column mt-3'}) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+      </div>
+
+      
+      <div class="field">
+        <%= f.text_field :fname, autofocus: true, autocomplete: "First Name", placeholder:"First Name" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :lname, autofocus: true, autocomplete: "Last Name", placeholder: "Last Name" %>
+      </div>
+
+      <div class="field">
+          <%= f.text_field :sex, autofocus: true, autocomplete: "Sex", placeholder: "Sex" %>
+        </div>
+  
+      <div class="field">
+        <%= f.date_field :dtbirth, autofocus: true, autocomplete: "Date of Birth", placeholder: "Date" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "New Password" %>
+      </div>
+
+      <% if @minimum_password_length %>
+        <em><small>(<%= @minimum_password_length %> characters minimum)</small></em>
+      <% end %>
+
+      <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password" %>
+      </div>
+
+      <div class="actions  mt-3 mb-3">
+        <%= f.submit "Sign up" , class:"btn cta-home filled invert" %>
+      </div>
+    <% end %>
+    <%= render "users/shared/links" %>
+
+  </div>
+</div>
