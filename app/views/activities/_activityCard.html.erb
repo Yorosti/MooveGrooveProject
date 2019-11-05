@@ -1,21 +1,26 @@
+<%
+
+imagePath =  activity.activities_list.imagePath
+title =  activity.activities_list.name
+category =  activity.activities_list.category
+duration =  activity.duration
+date=  activity.date
+%>
 
 
-        <div class="activity col col-12 row mt-4">
-            <div class="activity_img col col-2 p-0">
-              <img src="<%= image_path(imagePath) %> ">
-            </div>
-            <div class="activity_content col col-8 d-flex flex-column justify-content-start pl-3">
-              <h2 class="mb-3"><%= title %></h2>
-              <p> Category: <b><%= category %></b> </p>
-              <p> Duration: <b><%= duration %></b> </p>
-              <p> Date: <b><%= date %></b> </p>
-            </div>
-            <div class="activity_footer col col-2 d-flex flex-column justify-content-between mt-3 mb-3 text-right">
-              <div class="stopwatch">
-                  <img src=" <%= image_path('') %>">
-              </div>
-              <div>
-            </div>
-            </div>
-          </div>
-    
+<div class="activity col col-12 d-flex mt-4 p-2 rounded">
+  <div class="activity_img col col-1 p-0">
+    <img src="<%= image_path(imagePath) %> ">
+  </div>
+  <div class="activity_content col col-8 d-flex justify-content-around align-items-center pl-3">
+    <h2 class="mb-0" ><%= title %></h2>
+    <p> Category: <b><%= category %></b> </p>
+    <p> Minutes:  <b><%= duration %></b> </p>
+    <p> Date: <b><%= date.strftime("%m/%d/%Y")  %></b> </p>
+  </div>
+  <div class="col col-3 d-flex justify-content-around align-items-center">
+    <%= link_to 'Show', activity_path(activity)  %>
+    <%= link_to 'Edit',  edit_activity_path(activity)  %>
+    <%= link_to 'Delete', activity, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>

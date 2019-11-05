@@ -41,13 +41,10 @@
                   </li>
                 <% else %>  
                   <li class="nav-item">
-                    <a class="nav-link  <%= request.path == new_activity_path ? 'active' : ''  %>" href="<%= new_activity_path %>">New Activity</a>
-                  </li>
-                  <li class="nav-item">
                     <a class="nav-link <%= request.path == activities_path ? 'active' : ''  %>" href="<%= activities_path %>">Activities</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link  <%= request.path == edit_user_password_path ? 'active' : ''  %>" href="<%= edit_user_password_path %>">Settings</a>
+                    <a class="nav-link  <%= request.path == edit_user_registration_path ? 'active' : ''  %>" href="<%= edit_user_registration_path %>">User</a>
                     </li>                                  
                   <li class="nav-item">
                       <%= link_to 'Logout', destroy_user_session_path, :method => :delete,  :class => "nav-link " %>
@@ -56,7 +53,7 @@
                 
             </ul>
       </nav>
-
+      <div id='errors-tootip'><ul></ul></div>
 
     <%= yield %>
 
@@ -68,18 +65,29 @@
           
     
           <ul class="mr-2 mt-2 mt-lg-0">
-              <li class="">
-                <a class="" href=" <%= root_path %>">Home</a>
+            
+              <% if  !user_signed_in? %>
+              <li class="nav-item >">
+                <a class="nav-link <%= request.path == root_path ? 'active' : ''  %>" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="">
-                <a class="" href="#">Activities</a>
-              </li>
-              <li class="">
-                <a class="" href=" <%= new_user_session_path %>">Sign In</a>
+              <li class="nav-item ">
+                <a class="nav-link <%= request.path == new_user_session_path ? 'active' : ''  %>" href="<%= new_user_session_path %>">Sign In</a>
               </li>      		      		
-              <li class="">
-                <a class="" href=" <%= new_user_registration_path %>">Sign Up</a>
+              <li class="nav-item">
+                <a class="nav-link <%= request.path == new_user_registration_path ? 'active' : ''  %>" href="<%= new_user_registration_path %>">Sign Up</a>
               </li>
+            <% else %>  
+              <li class="nav-item">
+                <a class="nav-link <%= request.path == activities_path ? 'active' : ''  %>" href="<%= activities_path %>">Activities</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  <%= request.path == edit_user_registration_path ? 'active' : ''  %>" href="<%= edit_user_registration_path %>">User</a>
+                </li>                                  
+              <li class="nav-item">
+                  <%= link_to 'Logout', destroy_user_session_path, :method => :delete,  :class => "nav-link " %>
+              </li>                
+            <% end %>
+        
             </ul>
         </div>
         <div class="col col-6 text-right">

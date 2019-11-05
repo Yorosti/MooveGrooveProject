@@ -5,8 +5,8 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = Activity.all
-    render 'myActivities'
+    #@activities = Activity.all
+    @activities = Activity.select(:id, :duration, :date, :user_id, :activities_list_id).where(user: current_user ).order(date: :desc)
   end
 
   # GET /activities/1
@@ -17,6 +17,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
     @activity = Activity.new
+    #@activity_list = ActivitiesList.all
   end
 
   # GET /activities/1/edit
@@ -28,11 +29,13 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     @activity.user = current_user
+    @activity.activities_list = ActivitiesList.find(params[:activity][:archive_id])
+  
     
+
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
-        format.json { render :show, status: :created, location: @activity }
+        format.html {render :show}
       else
         format.html { render :new }
         format.json { render json: @activity.errors, status: :unprocessable_entity }
@@ -44,6 +47,7 @@ class ActivitiesController < ApplicationController
   # PATCH/PUT /activities/1.json
   def update
     respond_to do |format|
+      @activity.activities_list = ActivitiesList.find(params[:activity][:archive_id])
       if @activity.update(activity_params)
         format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
@@ -68,10 +72,11 @@ class ActivitiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_activity
       @activity = Activity.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def activity_params
-      params.fetch(:activity, {})
+      params.fetch(:activity, {}).permit(:duration, :date)
     end
 end

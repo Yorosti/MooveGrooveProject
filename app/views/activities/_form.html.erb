@@ -1,20 +1,139 @@
-<%= form_with(model: activity, local: true) do |form| %>
-  <% if activity.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+<div id='pageBody'>
+  <div id="activities" class="col col-12 pt-1 mb-5">
 
-      <ul>
-        <% activity.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <div class=" m-5 d-flex justify-content-between">
+      <p class="h2"><%=   @activity.activities_list === nil ? 'New Activity' : 'Edit Activity' %>   </p>
+      <p><b> <%= current_user.fname + ' ' +  current_user.lname %></b></p>
     </div>
-  <% end %>
+
+
+
+    <%= form_with(model: activity, local: true) do |f|  %>
+    <%= f.hidden_field :archive_id, :value => @activity.activities_list_id %>
+    
+      <% if activity.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+          <ul>
+            <% activity.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+      <div class="row justify-content-around ">
+        <div class="col col-10 col-lg-2 field">
+          <label for="date">Date:</label>
+          <%= f.date_field :date, autofocus: true, autocomplete: "Date of Birth", placeholder: "Date", class:"form-control pt-0 pb-0 dark-back" %>
+        </div>
+        <div class="col col-10 col-lg-2 field">
+          <label for="duration">Duration:</label>
+          <%= f.number_field :duration, autofocus: true, placeholder: "...minutes", class:"form-control pt-0 pb-0 dark-back" %>
+        </div>
+      </div>        
+
+      <div class="row justify-content-around activities-container">
+          <%  ActivitiesList.distinct.select(:category, :imagePath).each do | act1 | %>
+          <div class="activity-category m-3 col col-8 col-md-5 col-lg-2 <%= @activity.activities_list === nil ? '' : @activity.activities_list.category ===  act1.category ? 'is-flipped' : '' %>">
+              <div class="face face-front">
+                <h2><%= act1.category %></h2>
+                <img src="<%= image_path(act1.imagePath) %>">
+                <p class="btn my-button filled card-toggler"  href="#">Open</p>
+              </div>
+              <div class="face face-back">
+                <ul class="activity-list">
+                  <% ActivitiesList.select(:name, :id).where(category: act1.category ).find_each do |act| %>
+                  <li class=" <%= @activity.activities_list_id === act.id ? 'selected' : '' %>">
+                    <input type="button" value="<%= act.name %>" id="<%= act.id %>"  >
+                  </li>
+                  <% end %> 
+              </ul>
+             <p class="activity-list-back card-toggler">Back</p>
+            </div>
+          </div>
+          <%end%>
+      </div>
+
+
+
+      <div class="d-flex mr-5 justify-content-end">
+        <%= link_to 'Back', activities_path, class: 'btn btn-lg my-button invert pl-4 pr-4 mr-2' %>
+        <%= f.submit "Save", class:"btn btn-lg my-button  filled invert pl-4 pr-4", data: { disable_with: false} %>
+      </div>
+    <% end %>
+
   
 
-
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
-<% end %>
+</div>
+
+
+<script type="text/javascript">
+  
+  
+  
+
+function ToggleCard(){
+    this.parentElement.parentElement.classList.toggle('is-flipped')
+  }
+
+  function ToggleSelectItem(){
+    document.querySelectorAll('.selected').forEach((el) =>  el.classList.remove('selected'))
+
+    this.classList.toggle('selected')
+    document.querySelector('#activity_archive_id').setAttribute('value', this.firstElementChild.getAttribute('id'))
+  }
+    
+  function validateForm(evt){
+    evt.preventDefault();
+    let errors = []
+    if (document.querySelector('#activity_date').value > new Date()) {
+      errors.push('Cannot insert an activity for the future')    
+
+    } else if(document.querySelector('#activity_date').value === ''){
+      errors.push('Please insert a date')     
+    }
+    if (document.querySelector('#activity_duration').value <= 0 ) {
+      errors.push('Please insert a duration')            
+    }
+
+    if (document.querySelector('#activity_archive_id').value <= 0 ) {
+      errors.push('Please choose an activity')            
+    }
+
+    if (errors.length > 0) {
+      let errList;
+      let item;
+      errors.forEach((elmnt) => {
+
+        item = document.createElement('li')
+        errList = document.querySelector('#errors-tootip ul')
+        item.appendChild(document.createTextNode(elmnt))
+        errList.appendChild(item)
+      })
+      errList.parentElement.classList.add('err-show')
+       setTimeout(() => {
+         errList.parentElement.classList.remove('err-show')
+         setTimeout(() => {
+           while (errList.firstChild) {
+             errList.firstChild.remove()
+           }
+         }, 1100)
+       }, 5000)
+    }else{
+      evt.target.submit();
+    }
+  }
+
+
+
+  document.querySelector('form').addEventListener('submit', validateForm)
+  document.querySelectorAll('.card-toggler').forEach((item) => item.addEventListener('click', ToggleCard))
+  document.querySelectorAll('.activity-list li').forEach((item) => item.addEventListener('click', ToggleSelectItem))
+</script>
+  
+    
+  

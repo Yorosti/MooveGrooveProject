@@ -1,0 +1,25 @@
+<%= form_with(model: activities_list, local: true) do |f| %>
+  <% if activities_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(activities_list.errors.count, "error") %> prohibited this activities_list from being saved:</h2>
+
+      <ul>
+        <% activities_list.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <div>
+      <%=  f.text_field :name   %>
+      <%=  f.text_field :category  %>
+      <%=  f.text_field :imagePath  %>
+    </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
