@@ -1,4 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_activity_path(@activity) %> |
-<%= link_to 'Back', activities_path %>
+
+
+
+<div id='pageBody'>
+    <div id="activity-single" class="col col-12 pt-5">
+
+
+        <div id="act-name" class=" mb-3 d-flex justify-content-center">
+            <h1><%= @activity.activities_list.name %></h1>
+        </div>
+        <div class="col col-12 row vh50">
+            <div id="act-date" class=" col col-6 d-flex flex-column justify-content-center align-items-center">
+                <span>Date</span>
+                <p><%= @activity.date %></p>
+            </div>
+            <div id="act-mins" class="col col-6 d-flex flex-column justify-content-center align-items-center">
+                <span>Duration</span>
+                <p><%= @activity.duration %> min</p>
+            </div>
+        </div>
+        <div class="text-right mr-5">
+            <%= link_to 'Edit', edit_activity_path(@activity), class: 'btn my-button filled invert mt-3 pl-4 pr-4' %>
+            <%= link_to 'Back', activities_path, class: 'btn my-button filled invert mt-3 pl-4 pr-4' %>
+        </div>
+
+    </div>
+</div>
