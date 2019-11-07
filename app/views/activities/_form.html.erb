@@ -24,18 +24,18 @@
       <% end %>
 
 
-      <div class="row justify-content-around ">
-        <div class="col col-10 col-lg-2 field">
+      <div class="row  justify-content-center justify-content-md-around  ">
+        <div class="col col-10 col-lg-2 field text-center">
           <label for="date">Date:</label>
-          <%= f.date_field :date, autofocus: true, autocomplete: "Date of Birth", placeholder: "Date", class:"form-control pt-0 pb-0 dark-back" %>
+          <%= f.date_field :date, autofocus: true, autocomplete: "Date of Birth", placeholder: "Date", class:"form-control pt-0 pb-0 dark-back mx-auto" %>
         </div>
-        <div class="col col-10 col-lg-2 field">
+        <div class="col col-10 col-lg-2 field text-center">
           <label for="duration">Duration:</label>
-          <%= f.number_field :duration, autofocus: true, placeholder: "...minutes", class:"form-control pt-0 pb-0 dark-back" %>
+          <%= f.number_field :duration, autofocus: true, placeholder: "...minutes", class:"form-control pt-0 pb-0 dark-back mx-auto" %>
         </div>
       </div>        
 
-      <div class="row justify-content-around activities-container">
+      <div class="row justify-content-center justify-content-md-around activities-container">
           <%  ActivitiesList.distinct.select(:category, :imagePath).each do | act1 | %>
           <div class="activity-category m-3 col col-8 col-md-5 col-lg-2 <%= @activity.activities_list === nil ? '' : @activity.activities_list.category ===  act1.category ? 'is-flipped' : '' %>">
               <div class="face face-front">

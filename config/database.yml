@@ -10,11 +10,11 @@ default: &default
 #   timeout: 5000
   adapter: postgresql
   encoding: unicode
-  database: d950v7fd2ukg56
+  database: moove-groove_db
   pool: 5
-  host: ec2-54-246-92-116.eu-west-1.compute.amazonaws.com
-  username: akqoauguhcypdx
-  password: 5e511d653204fc675bd2e1f3f28c1eb4c77f619cf8dec61c2f23fa0cb0aa3237
+  host: localhost
+  username: yoros
+  password: Taranto66+P
 
 development:
   <<: *default

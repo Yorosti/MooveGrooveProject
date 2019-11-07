@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>V03Moovegroove</title>
+    <title>|Moove • Groove|</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,7 +14,7 @@
 
   </head>
 
-  <body class="<%= controller_name %> <%= action_name %>">
+  <body class="p-0 m-0 <%= controller_name %> <%= action_name %>">
     
       <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -25,80 +25,88 @@
       <!--<p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       -->
-      <nav class="navbar navbar-dark navbar-expand fixed-top" >
+      <nav class="navbar navbar-dark navbar-expand-md fixed-top" >
           <a class="navbar-brand mr-auto" href="<%= root_path %>">Move and Groove</a>
-          <ul class="navbar-nav mr-2 mt-2 mt-lg-0">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div  class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent"  >
+            <ul class="navbar-nav mr-2 mt-2 mt-lg-0">
 
-                <% if  !user_signed_in? %>
-                  <li class="nav-item >">
-                    <a class="nav-link <%= request.path == root_path ? 'active' : ''  %>" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item ">
-                    <a class="nav-link <%= request.path == new_user_session_path ? 'active' : ''  %>" href="<%= new_user_session_path %>">Sign In</a>
-                  </li>      		      		
-                  <li class="nav-item">
-                    <a class="nav-link <%= request.path == new_user_registration_path ? 'active' : ''  %>" href="<%= new_user_registration_path %>">Sign Up</a>
-                  </li>
-                <% else %>  
-                  <li class="nav-item">
-                    <a class="nav-link <%= request.path == activities_path ? 'active' : ''  %>" href="<%= activities_path %>">Activities</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link  <%= request.path == edit_user_registration_path ? 'active' : ''  %>" href="<%= edit_user_registration_path %>">User</a>
-                    </li>                                  
-                  <li class="nav-item">
-                      <%= link_to 'Logout', destroy_user_session_path, :method => :delete,  :class => "nav-link " %>
-                  </li>                
-                <% end %>
-                
-            </ul>
+                  <% if  !user_signed_in? %>
+                    <li class="nav-item >">
+                      <a class="nav-link <%= request.path == root_path ? 'active' : ''  %>" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                      <a class="nav-link <%= request.path == new_user_session_path ? 'active' : ''  %>" href="<%= new_user_session_path %>">Sign In</a>
+                    </li>      		      		
+                    <li class="nav-item">
+                      <a class="nav-link <%= request.path == new_user_registration_path ? 'active' : ''  %>" href="<%= new_user_registration_path %>">Sign Up</a>
+                    </li>
+                  <% else %>  
+                    <li class="nav-item">
+                      <a class="nav-link <%= request.path == activities_path ? 'active' : ''  %>" href="<%= activities_path %>">Activities</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link  <%= request.path == edit_user_registration_path ? 'active' : ''  %>" href="<%= edit_user_registration_path %>">User</a>
+                      </li>                                  
+                    <li class="nav-item">
+                        <%= link_to 'Logout', destroy_user_session_path, :method => :delete,  :class => "nav-link " %>
+                    </li>                
+                  <% end %>
+                  
+              </ul>
+          </div>
       </nav>
       <div id='errors-tootip'><ul></ul></div>
 
     <%= yield %>
 
-
-
-    
-    <footer class="d-flex justify-content-center align-items-center col col-12">
-        <div id="siteMap" class="col col-6">
-          
-    
-          <ul class="mr-2 mt-2 mt-lg-0">
-            
-              <% if  !user_signed_in? %>
-              <li class="nav-item >">
-                <a class="nav-link <%= request.path == root_path ? 'active' : ''  %>" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link <%= request.path == new_user_session_path ? 'active' : ''  %>" href="<%= new_user_session_path %>">Sign In</a>
-              </li>      		      		
-              <li class="nav-item">
-                <a class="nav-link <%= request.path == new_user_registration_path ? 'active' : ''  %>" href="<%= new_user_registration_path %>">Sign Up</a>
-              </li>
-            <% else %>  
-              <li class="nav-item">
-                <a class="nav-link <%= request.path == activities_path ? 'active' : ''  %>" href="<%= activities_path %>">Activities</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link  <%= request.path == edit_user_registration_path ? 'active' : ''  %>" href="<%= edit_user_registration_path %>">User</a>
-                </li>                                  
-              <li class="nav-item">
-                  <%= link_to 'Logout', destroy_user_session_path, :method => :delete,  :class => "nav-link " %>
-              </li>                
-            <% end %>
-        
-            </ul>
-        </div>
-        <div class="col col-6 text-right">
+    <footer class="d-flex justify-content-center align-items-center col col-12 text-left pt-4">
+      <div id="foot_left" class="col col-4 ">
+          <p> Indirizzo yeye, 123 <br> mariotte Italia, Mondo <br> Universo</p>
+      </div>
+      <div id="foot_center" class="col col-4 text-center">
           <p>
-            Call: <a href="#">123 4567890</a> <br>
-            Email: <a href="#">email#@test.it</a>	 
+              <a href="#">123 4567890</a>
+              <br>
+              <a href="#">maril@amail.it</a>
           </p>
-        </div>
-    
-    
-      </footer>
+          <ul>
+              <li><a href= '#'>FB</a></li>
+              <li><a href= '#'>INS</a></li>
+              <li><a href= '#'>TW</a></li>
+          </ul>
+      </div>
+  
+      <div id="foot_right" class="col col-4 text-center">
+          <ul>
+              <% if  !user_signed_in? %>
+              <li>
+                  <a href="<%= root_path %>">Home </a>
+              </li>
+              <li>
+                  <a href="<%= new_user_session_path %>">Sign In</a>
+              </li>
+              <li>
+                  <a href="<%= new_user_registration_path %>">Sign Up</a>
+              </li>
+              <% else %>
+              <li>
+                  <a href="<%= activities_path %>">Activities</a>
+              </li>
+              <li>
+                  <a href="<%= edit_user_registration_path %>">User</a>
+              </li>
+              <li>
+                  <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+              </li>
+              <% end %>
+          </ul>
+      </div>
+  
+  
+  </footer>
 
   </body>
 </html>
