@@ -11,7 +11,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+      
   </head>
 
   <body class="p-0 m-0 <%= controller_name %> <%= action_name %>">
@@ -21,15 +21,14 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-          
-      <!--<p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      -->
-      <nav class="navbar navbar-dark navbar-expand-md fixed-top" >
-          <a class="navbar-brand mr-auto" href="<%= root_path %>">Move and Groove</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+    
+      <nav class="navbar navbar-dark navbar-expand-md fixed-top nav-show" >
+          <div class="d-flex justify-content-md-between flex-grow-1">
+            <a class="navbar-brand mr-auto" href="<%= root_path %>">Move and Groove</a>
+            <button class="navbar-toggler ml-sm-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
           <div  class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent"  >
             <ul class="navbar-nav mr-2 mt-2 mt-lg-0">
 
@@ -58,15 +57,23 @@
               </ul>
           </div>
       </nav>
+      <% if alert  %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: absolute; bottom: 0;right: 3rem">
+          <%= alert %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      <%end%>
       <div id='errors-tootip'><ul></ul></div>
 
     <%= yield %>
 
-    <footer class="d-flex justify-content-center align-items-center col col-12 text-left pt-4">
-      <div id="foot_left" class="col col-4 ">
+    <footer class="d-flex flex-wrap justify-content-center align-items-center col col-12 text-left pt-4">
+      <div id="foot_left" class="col col-10 col-sm-4   text-center mb-2 ">
           <p> Indirizzo yeye, 123 <br> mariotte Italia, Mondo <br> Universo</p>
       </div>
-      <div id="foot_center" class="col col-4 text-center">
+      <div id="foot_center" class="col col-10 col-sm-4 text-center mb-2 ">
           <p>
               <a href="#">123 4567890</a>
               <br>
@@ -79,8 +86,8 @@
           </ul>
       </div>
   
-      <div id="foot_right" class="col col-4 text-center">
-          <ul>
+      <div id="foot_right" class="col col-10 col-sm-4 text-center mb-2 ">
+          <ul class="p-0">
               <% if  !user_signed_in? %>
               <li>
                   <a href="<%= root_path %>">Home </a>

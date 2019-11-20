@@ -10,12 +10,12 @@
         <div id="act-name" class=" mb-3 d-flex justify-content-center">
             <h1><%= @activity.activities_list.name %></h1>
         </div>
-        <div class="col col-12 row vh50">
-            <div id="act-date" class=" col col-6 d-flex flex-column justify-content-center align-items-center">
+        <div class="col col-12 row vh50 mx-auto">
+            <div id="act-date" class=" col-10 col-md-6 d-flex flex-column justify-content-center align-items-center mx-auto">
                 <span>Date</span>
                 <p><%= @activity.date %></p>
             </div>
-            <div id="act-mins" class="col col-6 d-flex flex-column justify-content-center align-items-center">
+            <div id="act-mins" class="col col-10 col-md-6 d-flex flex-column justify-content-center align-items-center mx-auto">
                 <span>Duration</span>
                 <p><%= @activity.duration %> min</p>
             </div>
