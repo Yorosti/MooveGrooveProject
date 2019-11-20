@@ -1,7 +1,7 @@
 <div id='pageBody'>
   <div id="activities" class="col col-12 pt-1 mb-5">
 
-    <div class=" m-5 d-flex justify-content-between">
+    <div class=" m-5 d-flex flex-wrap justify-content-between">
       <p class="h2"><%=   @activity.activities_list === nil ? 'New Activity' : 'Edit Activity' %>   </p>
       <p><b> <%= current_user.fname + ' ' +  current_user.lname %></b></p>
     </div>
@@ -70,70 +70,8 @@
   </div>
 </div>
 
-
-<script type="text/javascript">
+<%= javascript_pack_tag 'utilities/flippin-cards'%>
+<%= javascript_pack_tag 'activities/form'%>
+<%= javascript_pack_tag 'utilities/form-validation'%>
   
-  
-  
-
-function ToggleCard(){
-    this.parentElement.parentElement.classList.toggle('is-flipped')
-  }
-
-  function ToggleSelectItem(){
-    document.querySelectorAll('.selected').forEach((el) =>  el.classList.remove('selected'))
-
-    this.classList.toggle('selected')
-    document.querySelector('#activity_archive_id').setAttribute('value', this.firstElementChild.getAttribute('id'))
-  }
-    
-  function validateForm(evt){
-    evt.preventDefault();
-    let errors = []
-    if (document.querySelector('#activity_date').value > new Date()) {
-      errors.push('Cannot insert an activity for the future')    
-
-    } else if(document.querySelector('#activity_date').value === ''){
-      errors.push('Please insert a date')     
-    }
-    if (document.querySelector('#activity_duration').value <= 0 ) {
-      errors.push('Please insert a duration')            
-    }
-
-    if (document.querySelector('#activity_archive_id').value <= 0 ) {
-      errors.push('Please choose an activity')            
-    }
-
-    if (errors.length > 0) {
-      let errList;
-      let item;
-      errors.forEach((elmnt) => {
-
-        item = document.createElement('li')
-        errList = document.querySelector('#errors-tootip ul')
-        item.appendChild(document.createTextNode(elmnt))
-        errList.appendChild(item)
-      })
-      errList.parentElement.classList.add('err-show')
-       setTimeout(() => {
-         errList.parentElement.classList.remove('err-show')
-         setTimeout(() => {
-           while (errList.firstChild) {
-             errList.firstChild.remove()
-           }
-         }, 1100)
-       }, 5000)
-    }else{
-      evt.target.submit();
-    }
-  }
-
-
-
-  document.querySelector('form').addEventListener('submit', validateForm)
-  document.querySelectorAll('.card-toggler').forEach((item) => item.addEventListener('click', ToggleCard))
-  document.querySelectorAll('.activity-list li').forEach((item) => item.addEventListener('click', ToggleSelectItem))
-</script>
-  
-    
   

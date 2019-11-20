@@ -3,10 +3,16 @@
     background: rgba(2, 2, 2, 0.95);
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     padding: 10vh;
+    opacity: 0;
+    transition: all .5s;
 }
 
 .navbar-brand {
     font-size: 1.5rem
+}
+
+.nav-show{
+    opacity: 1;
 }
 
 #introduction {
@@ -103,7 +109,7 @@
 
 
 footer {
-    height: 40vh;
+    min-height: 40vh;
     background-color: #020202;
     color: #fff;
     font-weight: 200;

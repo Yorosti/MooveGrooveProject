@@ -30,49 +30,5 @@
 
 
 
-<script>
-
-
-function validateForm(evt){
-    evt.preventDefault();
-    let errors = []
-    if (document.querySelector('#user_email').value === '') {
-      errors.push('Please insert an email')    
-
-    } 
-    
-    if (document.querySelector('#user_password').value === '') {
-      errors.push('Please insert a password')    
-
-    }
-
-
-    if (errors.length > 0) {
-      let errList;
-      let item;
-      errors.forEach((elmnt) => {
-
-        item = document.createElement('li')
-        errList = document.querySelector('#errors-tootip ul')
-        item.appendChild(document.createTextNode(elmnt))
-        errList.appendChild(item)
-      })
-      errList.parentElement.classList.add('err-show')
-       setTimeout(() => {
-         errList.parentElement.classList.remove('err-show')
-         setTimeout(() => {
-           while (errList.firstChild) {
-             errList.firstChild.remove()
-           }
-         }, 1100)
-       }, 5000)
-    }else{
-      evt.target.submit();
-    }
-  }
-
-
-
-  document.querySelector('form').addEventListener('submit', validateForm)
-
-</script>
+<%= javascript_pack_tag 'sessions/new'%>
+<%= javascript_pack_tag 'utilities/form-validation'%>
