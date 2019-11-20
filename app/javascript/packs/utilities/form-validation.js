@@ -55,7 +55,6 @@ class FormValidation {
     checkSpecific(elmntObj) {
         Object.keys(elmntObj).forEach(element => {
             document.querySelectorAll(element).forEach(el => {
-                console.log(el.value)
                 if (!this.isNumeric(el.value) && el.value === '') {
                     this.errors.push(elmntObj[element])
 
