@@ -1,22 +1,23 @@
-const FormDisabled = disabled => {
+const FormDisabled = (disabled = true) => {
 	document.querySelectorAll('.field input').forEach((elmnt) => {
 		elmnt.disabled = disabled
 	})
 }
+const editButton = document.querySelector('#editBtn')
+const actionInputs = document.querySelectorAll('.actions input')
+
+FormDisabled();
 
 
-
-
-FormDisabled(true)
-document.getElementById('editBtn').addEventListener('click', (evt) => {
+editButton.addEventListener('click', (evt) => {
 	evt.target.classList.add('d-none')
-	document.querySelectorAll('.actions input').forEach((elmnt) => elmnt.classList.remove('d-none'))
+	actionInputs.forEach((elmnt) => elmnt.classList.remove('d-none'))
 	FormDisabled(false)
 })
 
-document.querySelector('#clearFormBtn').addEventListener('click', (evt) => {
-	document.getElementById('editBtn').classList.remove('d-none')
-	document.querySelectorAll('.actions input').forEach((elmnt) => elmnt.classList.add('d-none'))
+document.querySelector('#clearFormBtn').addEventListener('click', () => {
+	editButton.classList.remove('d-none')
+	actionInputs.forEach((elmnt) => elmnt.classList.add('d-none'))
 	FormDisabled(true)
 })
 
@@ -25,10 +26,21 @@ document.querySelector('#clearFormBtn').addEventListener('click', (evt) => {
 function validateForm(evt) {
 	evt.preventDefault();
 	var validation = new FormValidation();
-	validation.completeCheck();
+	
+	if(document.querySelector('#user_password').value != ''){
+		validation.completeCheck();
+		
+		if (document.querySelector('#user_current_password').value === document.querySelector('#user_password').value) {
+			validation.errors.push('New password should be different form the previous ')
+		}
 
-	if (document.querySelector('#user_current_password').value === document.querySelector('#user_password').value) {
-		validation.errors.push('New password should be different form the previous ')
+		if (document.querySelector('#user_password').value != document.querySelector('#user_password_confirmation').value) {
+			validation.errors.push(' Passwords don\'t match ')
+		}
+	}else{
+		validation.checkDates()
+		validation.checkEmails()
+		validation.checkTexts()
 	}
 
 

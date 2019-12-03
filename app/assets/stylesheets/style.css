@@ -46,13 +46,13 @@
 
 
 .my-button {
-    color: #fff;
+    color: #0f0f0f;
     background: transparent;
     transition: all .4s ease-in-out;
     background-size: 100% 300%;
-    background-image: linear-gradient(to bottom, transparent, transparent, transparent, transparent, #fff, #fff, #fff, #fff);
+    background-image: linear-gradient(to bottom, transparent, transparent, transparent, transparent, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f);
     border-radius: 0;
-    border: 1px solid #fff;
+    border: 1px solid #0f0f0f;
     cursor: pointer;
 }
 
@@ -60,17 +60,19 @@
 .my-button:hover {
     background-position: 0 100%;
     transition: all .4s ease-in-out;
+    color: #fff;
 }
 
 .my-button.filled {
     background-position: 0 100%;
-    color: #212529;
+    color: #fff !important;
 }
 
 .my-button.filled:hover {
     background-position: 0 0;
     transition: all .4s ease-in-out;
-    color: #fff;
+    border: 1px solid #0f0f0f;
+    color: #0f0f0f !important;
 }
 
 

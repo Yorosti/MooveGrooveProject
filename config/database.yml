@@ -16,6 +16,14 @@ default: &default
    username: yoros
    password: Taranto66+P
 
+  # adapter: postgresql
+  # encoding: unicode
+  # database: d950v7fd2ukg56
+  # pool: 5
+  # port: 5432
+  # host: ec2-54-246-92-116.eu-west-1.compute.amazonaws.com
+  # username: akqoauguhcypdx
+  # password: 5e511d653204fc675bd2e1f3f28c1eb4c77f619cf8dec61c2f23fa0cb0aa3237
 
 
 development:
@@ -31,9 +39,4 @@ test:
 
 production:
   <<: *default
-  database: d950v7fd2ukg56
-  port: 5432
-  host: ec2-54-246-92-116.eu-west-1.compute.amazonaws.com
-  username: akqoauguhcypdx
-  password: 5e511d653204fc675bd2e1f3f28c1eb4c77f619cf8dec61c2f23fa0cb0aa3237
-
+  # database: db/production.sqlite3
