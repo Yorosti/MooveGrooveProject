@@ -18,7 +18,6 @@
 #introduction {
     height: 100vh;
     background-image: url('pg1.jpg');
-    background-image: url(<%= asset_path('pg1.jpg') %>);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
